@@ -26,5 +26,14 @@ app = Flask(__name__)
 CORS(app)
 api = Api(app)
 
-todos = toolbox.TodoList()
+class Cat(Resource):
+    def get(self):
+        return {"Hello"}     
+
+api.add_resource(Cat, "/api/cats")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
 
