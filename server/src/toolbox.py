@@ -47,7 +47,7 @@ def roll_dice(sides=6, count=1):
     if not 1 <= count <= 20:
         raise ValueError("count must be between 1 and 20")
 
-    rolls = [random.randint(1, sides+1) for _ in range(count)]
+    rolls = [random.randint(1, sides) for _ in range(count)]
     return {"rolls": rolls, "total": sum(rolls)}
 
 
@@ -86,8 +86,7 @@ class TodoList:
         raise KeyError(f"no item with id {item_id}")
 
 
-# Terminal CLI 
-if __name__ == "__main__":
+def main():
     todos = TodoList()
     menu = """
         1) Analyze text
@@ -106,7 +105,9 @@ if __name__ == "__main__":
             elif choice == "2":
                 print(convert_temperature(input("Value: "), input("From (C/F): ")))
             elif choice == "3":
-                print(roll_dice(input("Sides: ") or 6, input("How many: ") or 1))
+                sides = input("Sides: ") or 6
+                cnt = input("How many: ") or 1
+                print(roll_dice(sides,cnt))
             elif choice == "4":
                 print(todos.add(input("Task: ")))
             elif choice == "5":
@@ -117,3 +118,8 @@ if __name__ == "__main__":
                 print("Unknown option")
         except ValueError as err:
             print(f"Error: {err}")
+
+
+# Terminal CLI 
+if __name__ == "__main__":
+    main()
