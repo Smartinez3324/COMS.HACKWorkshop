@@ -26,11 +26,16 @@ app = Flask(__name__)
 CORS(app)
 api = Api(app)
 
-class Cat(Resource):
+class Dice(Resource):
     def get(self):
-        return {"Hello"}     
+        try:
+            return toolbox.roll_dice(
+                    request.args.get("sides", 6), request.args.get("count", 1)
+                    )
+        except ValueError as err:
+            return {"error": str(err)}, 400
 
-api.add_resource(Cat, "/api/cats")
+api.add_resource(Dice, "/api/dice")
 
 
 if __name__ == "__main__":
