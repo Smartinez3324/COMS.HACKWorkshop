@@ -1,6 +1,5 @@
 import random
 
-
 # 1. Text in -> dictionary out
 def analyze_text(text):
     """Return stats about a piece of text."""
@@ -52,7 +51,7 @@ def roll_dice(sides=6, count=1):
 
 
 class TodoList:
-    """An in-memory to-do list. Data resets when the program restarts."""
+    """In memory todo list. Data resets when the program restarts."""
 
     def __init__(self):
         self._items = []
